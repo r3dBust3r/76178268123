@@ -28,7 +28,7 @@ char	ft_strlowcase(char str)
 	return (str);
 }
 
-int	is_alphanumeric(char c)
+int	is_not_alphanumeric(char c)
 {
 	if ((c >= 32 && c <= 47)
 		|| (c >= 58 && c <= 64)
@@ -46,11 +46,13 @@ char	*ft_strcapitalize(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == ' ' || str[i] == '\t')
+			i++;
 		if (i == 0)
 			str[0] = ft_strupcase(str[0]);
 		else
 		{
-			if (is_alphanumeric(str[i - 1]))
+			if (is_not_alphanumeric(str[i - 1]))
 				str[i] = ft_strupcase(str[i]);
 			else
 				str[i] = ft_strlowcase(str[i]);
